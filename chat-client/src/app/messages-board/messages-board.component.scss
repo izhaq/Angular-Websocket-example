@@ -1,0 +1,31 @@
+:host{
+  display: flex;
+  padding-top: 20px;
+  .messages-container{
+    display: flex;
+    flex-direction: column;
+    .chat-message{
+      display: flex;
+      flex: 1;
+      .name-logo{
+        display: flex;
+        width: 50px;
+        height: 50px;
+        border: 0.5px solid lightgray;
+        border-radius: 25px;
+        align-items: center;
+        justify-content: center;
+        font-size: 25px;
+        color: white;
+        background: lightgray;
+      }
+      .message-content{
+        display: flex;
+        width: calc(100% - 50px);
+        padding-left: 10px;
+        padding-bottom: 20px;
+      }
+    }
+  }
+
+}
