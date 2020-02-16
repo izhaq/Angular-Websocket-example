@@ -1,12 +1,24 @@
 :host{
   display: flex;
-  padding-top: 20px;
+  padding: 20px;
   .messages-container{
     display: flex;
     flex-direction: column;
+    height: 100%;
     .chat-message{
       display: flex;
-      flex: 1;
+      align-items: center;
+      margin-bottom: 20px;
+      &.other-user{
+        flex-direction: row-reverse;
+        .message-content-container {
+          margin-left: 0px;
+          margin-right: 20px;
+          .message-content {
+            background: #f5f9fa;
+          }
+        }
+      }
       .name-logo{
         display: flex;
         width: 50px;
@@ -19,11 +31,35 @@
         color: white;
         background: lightgray;
       }
-      .message-content{
+      .message-content-container {
         display: flex;
-        width: calc(100% - 50px);
-        padding-left: 10px;
-        padding-bottom: 20px;
+        width: calc(100% - 70px);
+        margin-left: 20px;
+        align-items: center;
+        position: relative;
+        .arrow{
+          width: 0;
+          height: 0;
+          border-top: 20px solid transparent;
+          border-bottom: 20px solid transparent;
+          position: absolute;
+          &.left{
+            border-right: 20px solid #dcf8c6;
+            left: -15px;
+          }
+          &.right{
+            border-left: 20px solid #f5f9fa;
+            right: -15px;
+          }
+        }
+        .message-content {
+          display: flex;
+          padding: 15px;
+          border-radius: 5px;
+          background: #dcf8c6;
+          box-shadow: 0px 2px 4px -3px rgba(0, 0, 0, 0.75);
+        }
+
       }
     }
   }
