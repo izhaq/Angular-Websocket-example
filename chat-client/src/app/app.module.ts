@@ -6,12 +6,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NewUserJoinComponent } from './new-user-join/new-user-join.component';
 import { MessagesBoardComponent } from './messages-board/messages-board.component';
+import { SendMessageComponent } from './send-message/send-message.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NewUserJoinComponent,
-    MessagesBoardComponent
+    MessagesBoardComponent,
+    SendMessageComponent
   ],
   imports: [
     BrowserModule,

@@ -1,24 +1,38 @@
 :host {
-  margin: 15px;
+  padding: 15px;
+  background: #007bff;
+  color: white;
   .new-user-container{
     display: flex;
-    flex-direction: column;
-    .input-desc{
-      font-size: 19px;
-      color: gray;
-      height: 20px;
-    }
-    .input-active{
-      border-top: none;
-      border-right: none;
-      border-left: none;
-      height: 30px;
-      font-size: 20px;
+    .current-user{
       display: flex;
-      padding-top: 10px;
-
-      &:focus{
-        outline: none;
+      flex-direction: column;
+      flex: 1;
+      .user-logged{
+        display: flex;
+        flex: 1;
+        height: 100%;
+        justify-content: center;
+        font-weight: bolder;
+        font-size: x-large;
+      }
+      .input-desc{
+        font-size: 19px;
+        height: 20px;
+      }
+      .input-active{
+        border-top: none;
+        border-right: none;
+        border-left: none;
+        height: 30px;
+        font-size: 20px;
+        display: flex;
+        padding-top: 10px;
+        background: #007bff;
+        &:focus{
+          outline: none;
+          color: white;
+        }
       }
     }
   }

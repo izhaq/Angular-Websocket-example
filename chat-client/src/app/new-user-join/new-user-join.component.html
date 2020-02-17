@@ -1,4 +1,11 @@
 <div class="new-user-container">
-  <span class="input-desc">Please enter user name:</span>
-  <input class="input-active"(keydown.enter)="onNewUserLogin($event)">
+  <div class="current-user" *ngIf="currentUser === '' else showUser">
+    <span class="input-desc">Please enter user name:{{currentUser}}</span>
+    <input class="input-active"(keydown.enter)="onNewUserLogin($event)">
+  </div>
 </div>
+<ng-template #showUser>
+  <div class="current-user">
+    <span class="user-logged">{{currentUser}}</span>
+  </div>
+</ng-template>

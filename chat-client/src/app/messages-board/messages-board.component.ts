@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {ChatMessage} from "../models/chat-message";
 
 @Component({
   selector: 'app-messages-board',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./messages-board.component.scss']
 })
 export class MessagesBoardComponent implements OnInit {
+
+  @Input() messages: ChatMessage[];
+  @Input() currentUser: string;
 
   constructor() { }
 

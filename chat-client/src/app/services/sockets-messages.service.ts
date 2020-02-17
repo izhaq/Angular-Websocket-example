@@ -3,32 +3,40 @@
  import {BehaviorSubject, Observable} from 'rxjs';
  import {ChatMessage} from '../models/chat-message';
 
- const URL = 'ws://localhost:9000';
+ const URL = 'ws://localhost:8999';
 
 @Injectable({
   providedIn: 'root'
 })
 export class SocketsMessagesService {
 
-  //myWebSocket: WebSocketSubject<ChatMessage> = webSocket('ws://localhost:8000');
   private socketConnection$: WebSocketSubject<ChatMessage>;
-  private storeMessags$: BehaviorSubject<ChatMessage[]>;
-  private storeMessags: ChatMessage[] = [];
-  RETRY_SECONDS = 10;
 
   constructor() {
-    this.init();
-  }
-
-  init() {
-    this.socketConnection$ = webSocket(URL);
-    this.storeMessags$ = new BehaviorSubject(this.storeMessags);
-    //this.connect();
+    this.connect();
+    //this.onMessageReceived();
   }
 
   connect() {
+    this.socketConnection$ = webSocket(URL);
+    //this.storeMessages$ = new BehaviorSubject(this.storeMessages);
+
+  }
+
+  onMessageReceived() {
     console.log('Angular App : connected');
-    this.socketConnection$.asObservable().subscribe( (msgs: ChatMessage) => console.log(msgs));
-    //this.ChatMessage
+    this.socketConnection$.subscribe( (msg: ChatMessage) => {
+      //this.appStoreSrv.addNewMessage(msg);
+/*      this.storeMessages.push(msg);
+      this.storeMessages$.next(this.storeMessages);*/
+    });
+  }
+
+  onMessageSent(msg: ChatMessage) {
+    this.socketConnection$.next(msg);
+  }
+
+  get messagesObservable(): Observable<ChatMessage> {
+    return this.socketConnection$.asObservable();
   }
 }

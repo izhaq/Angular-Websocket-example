@@ -1,0 +1,42 @@
+:host{
+  display: flex;
+  min-height: 60px;
+  border-top: 0.5px solid #e7e7e7;
+  padding-top: 5px;
+  .send-message-container{
+    display: flex;
+    width: 100%;
+    .new-message-container{
+      display: flex;
+      width: calc(100% - 50px);
+      .input-new-msg{
+        border-top: none;
+        border-right: none;
+        border-left: none;
+        font-size: 17px;
+        display: flex;
+        padding: 10px;
+        width: 100%;
+        &:focus{
+          outline: none;
+          color: black;
+        }
+      }
+    }
+    .send-btn-container{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      .triangle{
+        width: 0;
+        height: 0;
+        border-top: 13px solid transparent;
+        border-bottom: 13px solid transparent;
+        border-left: 35px solid #007bff;
+        cursor: pointer;
+
+      }
+    }
+  }
+
+}

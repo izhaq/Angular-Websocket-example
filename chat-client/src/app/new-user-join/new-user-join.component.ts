@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-new-user-join',
@@ -7,13 +7,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewUserJoinComponent implements OnInit {
 
+  @Input() currentUser: string;
+  @Output() newUserLogin = new EventEmitter<string>();
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
   onNewUserLogin(event) {
-    console.log(event);
+    this.newUserLogin.emit(event.currentTarget.value);
   }
 
 }

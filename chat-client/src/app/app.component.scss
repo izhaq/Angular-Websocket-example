@@ -7,6 +7,7 @@
     align-items: center;
     height: 100%;
     .chat-container{
+      position: relative;
       display: flex;
       flex-direction: column;
       height: 95%;
@@ -14,11 +15,17 @@
       border-radius: 5px;
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
       app-new-user-join{
-        height: 50px;
+        height: 80px;
       }
       app-messages-board{
-        height: calc(100% - 100px);
         overflow: auto;
+        margin-top: 10px;
+      }
+      app-send-message{
+        position: relative;
+        bottom: 0;
+        width: 100%;
+        display: flex;
       }
     }
   }

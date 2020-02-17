@@ -1,0 +1,8 @@
+<div class="send-message-container">
+  <div contenteditable="true" class="new-message-container">
+    <input [(ngModel)]="msgContent" (keydown.enter)="sendNewMessage()" placeholder="Type a message.." contenteditable="true" class="input-new-msg">
+  </div>
+  <div class="send-btn-container">
+    <div class="triangle" (click)="sendNewMessage()"></div>
+  </div>
+</div>
