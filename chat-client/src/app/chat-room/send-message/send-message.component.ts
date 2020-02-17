@@ -16,7 +16,7 @@ export class SendMessageComponent implements OnInit {
   }
 
   sendNewMessage() {
-    if (this.msgContent){
+    if (this.msgContent) {
       this.newMessage.emit(this.msgContent);
       this.msgContent = '';
     }

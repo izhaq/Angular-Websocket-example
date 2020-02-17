@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ChatMessage} from "../models/chat-message";
+import {ChatMessage} from '../../models/chat-message';
 
 @Component({
   selector: 'app-messages-board',

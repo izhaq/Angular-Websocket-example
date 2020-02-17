@@ -14,15 +14,26 @@ interface ExtWebSocket extends WebSocket {
     isAlive: boolean;
 }
 
-function createMessage(content: string, isBroadcast = false, sender = 'NS'): string {
-    return JSON.stringify(new Message(content, isBroadcast, sender));
+function createChatMessage(content: string, isBroadcast = false, sender = 'NS'): string {
+    return JSON.stringify(new ChatMessage(content, sender));
 }
 
-export class Message {
+function createLoginMessage(user: string): string {
+    return JSON.stringify(new LoginMessage(user));
+}
+
+export class ChatMessage {
     constructor(
         public content: string,
-        public isBroadcast = false,
-        public sender: string
+        public sender: string,
+        public reciver = 'All'
+    ) { }
+}
+
+export class LoginMessage {
+    constructor(
+        public userName: string,
+        public type = 'login'
     ) { }
 }
 
@@ -39,30 +50,27 @@ wss.on('connection', (ws: WebSocket) => {
     //connection is up, let's add a simple simple event
     ws.on('message', (msg: string) => {
 
-        const message = JSON.parse(msg) as Message;
+        const message = JSON.parse(msg);
 
-        console.log('thisi is mmmmmm: ', message);
+        console.log(message);
         setTimeout(() => {
-            if (message.isBroadcast) {
-
-                //send back the message to the other clients
-                wss.clients
-                    .forEach(client => {
-                        if (client != ws) {
-                            client.send(createMessage(message.content, true, message.sender));
+            wss.clients
+                .forEach(client => {
+                    if (client != ws) {
+                        console.log('before sinding ', message);
+                        if(message.type === 'login'){
+                            client.send(createLoginMessage(message.userName));
+                        } else if(message.type === 'chat'){
+                            client.send(createChatMessage(message.content, true, message.sender));
                         }
-                    });
-
-            }
-
-            ws.send(createMessage(`You sent -> ${message.content}`, message.isBroadcast));
-
+                    }
+                });
         }, 1000);
 
     });
 
     //send immediatly a feedback to the incoming connection
-    ws.send(createMessage('Hi there, I am a WebSocket server'));
+    //ws.send(createMessage('Hi there, I am a WebSocket server'));
 
     ws.on('error', (err) => {
         console.warn(`Client disconnected - reason: ${err}`);

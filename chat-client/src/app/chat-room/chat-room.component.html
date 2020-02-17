@@ -1,0 +1,7 @@
+<div class="chat-room-container">
+  <div class="chat-container">
+    <app-new-user-join [currentUser]="currentUser | async" (newUserLogin)="onUserLogin($event)"></app-new-user-join>
+    <app-messages-board [currentUser]="currentUser | async" [messages]="messages | async"></app-messages-board>
+    <app-send-message (newMessage)="onNewMessage($event)"></app-send-message>
+  </div>
+</div>

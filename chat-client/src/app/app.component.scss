@@ -2,31 +2,7 @@
   display: block;
   height: 100%;
   .app-container{
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: block;
     height: 100%;
-    .chat-container{
-      position: relative;
-      display: flex;
-      flex-direction: column;
-      height: 95%;
-      width: 50%;
-      border-radius: 5px;
-      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-      app-new-user-join{
-        height: 80px;
-      }
-      app-messages-board{
-        overflow: auto;
-        margin-top: 10px;
-      }
-      app-send-message{
-        position: relative;
-        bottom: 0;
-        width: 100%;
-        display: flex;
-      }
-    }
   }
 }

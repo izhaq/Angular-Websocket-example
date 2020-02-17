@@ -2,6 +2,8 @@
  import { webSocket, WebSocketSubject } from 'rxjs/webSocket';
  import {BehaviorSubject, Observable} from 'rxjs';
  import {ChatMessage} from '../models/chat-message';
+ import {User} from "../models/user";
+ import {UserLoginMessage} from "../models/user-login-message";
 
  const URL = 'ws://localhost:8999';
 
@@ -10,33 +12,22 @@
 })
 export class SocketsMessagesService {
 
-  private socketConnection$: WebSocketSubject<ChatMessage>;
+  private socketConnection$: WebSocketSubject<ChatMessage | UserLoginMessage>;
 
   constructor() {
     this.connect();
-    //this.onMessageReceived();
   }
 
   connect() {
     this.socketConnection$ = webSocket(URL);
-    //this.storeMessages$ = new BehaviorSubject(this.storeMessages);
 
   }
 
-  onMessageReceived() {
-    console.log('Angular App : connected');
-    this.socketConnection$.subscribe( (msg: ChatMessage) => {
-      //this.appStoreSrv.addNewMessage(msg);
-/*      this.storeMessages.push(msg);
-      this.storeMessages$.next(this.storeMessages);*/
-    });
-  }
-
-  onMessageSent(msg: ChatMessage) {
+  onMessageSent(msg: ChatMessage | UserLoginMessage) {
     this.socketConnection$.next(msg);
   }
 
-  get messagesObservable(): Observable<ChatMessage> {
+  get messagesObservable(): Observable<ChatMessage | UserLoginMessage> {
     return this.socketConnection$.asObservable();
   }
 }

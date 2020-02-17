@@ -1,7 +1,7 @@
-export class ChatMessage {
-  constructor(
-    public sender: string,
-    public content: string,
-    public isBroadcast = false,
-  ) { }
+import {SocketMessage} from './socket-message';
+
+export class ChatMessage extends SocketMessage {
+  constructor(public sender = 'NA', public content: string) {
+    super('chat');
+  }
 }
